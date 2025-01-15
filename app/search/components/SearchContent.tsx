@@ -1,5 +1,6 @@
 "use client"
 
+import LikeButton from "@/components/LikeButton";
 import MediaItem from "@/components/MediaItem";
 import { Song } from "@/types";
 
@@ -41,7 +42,7 @@ if (songs.length === 0) {
                           data={song}
                         />
                     </div>
-                    { /* TODO: Add like Button here*/}
+                    <LikeButton songId={song.id}/>
                 </div>
             ))
         }
