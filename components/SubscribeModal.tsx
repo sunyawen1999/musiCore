@@ -8,6 +8,7 @@ import { useUser } from "@/hooks/useUser";
 import { Price, ProductwithPrice } from "@/types";
 import { postData } from "@/libs/helpers";
 import { getStripe } from "@/libs/stripeClient";
+import useSubscribeModal from "@/hooks/useSubscribeModal";
 
 
 interface SubcribeModalProps {
@@ -28,9 +29,15 @@ const formatPrice = (price: Price) => {
 const SubcribeModal: React.FC<SubcribeModalProps> = ({
     products
 }) => {
+  const subscribeModal = useSubscribeModal();
   const { user, isLoading, subscription } = useUser();
   const [priceIdLoading, setPriceIdLoading] = useState<string>();
 
+  const onChange = (open: boolean) => {
+    if (!open) {
+      subscribeModal.onClose();
+    }
+  }
   const handleCheckout = async (price: Price) => {
     setPriceIdLoading(price.id);
 
@@ -106,8 +113,8 @@ const SubcribeModal: React.FC<SubcribeModalProps> = ({
     <Modal
       title="Only for premium users"
       description="Listen to music with MusiCore Premium"
-      isOpen
-      onChange={() => {}}
+      isOpen={subscribeModal.isOpen}
+      onChange={onChange}
     >
       {content}
     </Modal>
