@@ -16,7 +16,7 @@ import Button from "./Button";
 
 
 
-const uploadModal = () => {
+const UploadModal = () => {
     const [isLoading, setIsLoading] = useState(false);
     const uploadModal = useUploadModal();
     const { user } = useUser();
@@ -176,4 +176,4 @@ const uploadModal = () => {
     );
 }
  
-export default uploadModal;
+export default UploadModal;
