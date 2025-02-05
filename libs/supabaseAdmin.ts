@@ -6,8 +6,6 @@ import { Price, Product } from "@/types";
 
 import { stripe } from "./stripe"
 import { toDateTime } from "./helpers";
-import { metadata } from "@/app/layout";
-import { subscribe } from "diagnostics_channel";
 
 export const supabaseAdmin = createClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL || '',
@@ -75,8 +73,8 @@ const createOrRetrieveACustomer = async ({
       .single();
 
     if (error || !data?.stripe_customer_id) {
-        const customerData: { metaData: { supabaseUUID: string }; email?: string } = {
-            metaData : {
+        const customerData: { metadata: { supabaseUUID: string }; email?: string } = {
+            metadata : {
               supabaseUUID: uuid
             }
         };
